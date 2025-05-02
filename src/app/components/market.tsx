@@ -1,6 +1,6 @@
 import { ShoppingCart, Zap, Clock, Skull } from "lucide-react"
-import { Skeleton } from "./ui/skeleton"
 import { MarketItem } from "../lib/type"
+import { Skeleton } from "./ui/skeleton"
 
 interface MarketProps {
   items: MarketItem[]
@@ -32,11 +32,11 @@ export function Market({ items, loading }: MarketProps) {
     <div className="card p-6">
       <h2 className="text-2xl font-bold mb-6 text-center">Mercado Galáctico</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
         {items.map((item) => (
           <div
             key={item.id}
-            className="p-4 border border-blue-500/30 rounded-md hover:border-blue-400/60 transition-colors"
+            className="p-4 border border-blue-500/30 rounded-md hover:border-blue-400/60 transition-colors bg-blue-900/20 hover:bg-blue-900/30"
           >
             <div className="flex items-center gap-3 mb-2">
               {getItemIcon(item.type)}

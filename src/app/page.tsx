@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { MarketItem, Player } from "./lib/type"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@radix-ui/react-tabs"
 import { Header } from "./components/header"
 import { Leaderboard } from "./components/leaderboard"
 import { Market } from "./components/market"
+import { SimpleTabs, TabContent } from "./components/simple-tabs"
 import { fetchWithCache } from "./lib/api"
+import { Player, MarketItem } from "./lib/type"
 
 
 export default function Home() {
@@ -65,37 +65,31 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 sm:p-6 md:p-8">
-      <Header onRefresh={handleRefresh} lastUpdated={lastUpdated} />
+      <div className="w-full max-w-5xl mx-auto">
+        <Header onRefresh={handleRefresh} lastUpdated={lastUpdated} />
 
-      {error && (
-        <div className="w-full max-w-4xl mb-4 p-3 bg-red-900/50 border border-red-700 rounded-md text-center">
-          {error}
-        </div>
-      )}
+        {error && (
+          <div className="w-full mb-4 p-3 bg-red-900/50 border border-red-700 rounded-md text-center">{error}</div>
+        )}
 
-      <Tabs defaultValue="leaderboard" className="w-full max-w-4xl">
-        <TabsList className="grid w-full grid-cols-2 mb-6">
-          <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
-          <TabsTrigger value="market">Market</TabsTrigger>
-        </TabsList>
+        <SimpleTabs>
+          <TabContent id="leaderboard">
+            <Leaderboard players={players} loading={loading} />
+          </TabContent>
+          <TabContent id="market">
+            <Market items={items} loading={loading} />
+          </TabContent>
+        </SimpleTabs>
 
-        <TabsContent value="leaderboard">
-          <Leaderboard players={players} loading={loading} />
-        </TabsContent>
-
-        <TabsContent value="market">
-          <Market items={items} loading={loading} />
-        </TabsContent>
-      </Tabs>
-
-      <footer className="mt-12 text-center text-sm text-blue-300/70">
-        <p>Galactic Fishing Game - Bloque Challenge</p>
-        <p className="mt-1">
-          <Link href="https://www.bloque.app" target="_blank" className="underline hover:text-blue-300">
-            www.bloque.app
-          </Link>
-        </p>
-      </footer>
+        <footer className="mt-12 text-center text-sm text-blue-300/70">
+          <p>Galactic Fishing Game - Bloque Challenge</p>
+          <p className="mt-1">
+            <Link href="https://www.bloque.app" target="_blank" className="underline hover:text-blue-300">
+              www.bloque.app
+            </Link>
+          </p>
+        </footer>
+      </div>
     </main>
   )
 }

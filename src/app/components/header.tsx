@@ -4,6 +4,7 @@ import { RefreshCcw, Wifi, WifiOff } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Button } from "./ui/button"
 
+
 interface HeaderProps {
   onRefresh: () => void
   lastUpdated: Date | null
@@ -30,22 +31,27 @@ export function Header({ onRefresh, lastUpdated }: HeaderProps) {
   }, [])
 
   return (
-    <div className="w-full max-w-4xl mb-8">
+    <div className="w-full max-w-5xl mb-8">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold glow mb-2 sm:mb-0">Galactic Fishing Game</h1>
+        <h1 className="text-3xl md:text-4xl font-bold glow mb-2 sm:mb-0 tracking-wide">Galactic Fishing Game</h1>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {isOnline ? (
-            <span className="flex items-center text-green-400 text-sm">
+            <span className="flex items-center text-green-400 text-sm bg-green-950/30 px-2 py-1 rounded-full">
               <Wifi className="h-4 w-4 mr-1" /> Online
             </span>
           ) : (
-            <span className="flex items-center text-yellow-400 text-sm">
+            <span className="flex items-center text-yellow-400 text-sm bg-yellow-950/30 px-2 py-1 rounded-full">
               <WifiOff className="h-4 w-4 mr-1" /> Offline
             </span>
           )}
 
-          <Button variant="outline" size="sm" onClick={onRefresh} className="ml-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onRefresh}
+            className="ml-2 border-blue-500/50 hover:bg-blue-900/30"
+          >
             <RefreshCcw className="h-4 w-4 mr-1" />
             Refresh
           </Button>

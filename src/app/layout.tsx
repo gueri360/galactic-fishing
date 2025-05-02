@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
       </head>
-      <body className={`${inter.className} min-h-screen bg-[#0a0a2a] text-white`}>
+      <body className={`${inter.className} min-h-screen bg-[#0a0a2a] text-white overflow-x-hidden`}>
         <SpaceBackground />
         <div className="relative z-10">{children}</div>
         <script

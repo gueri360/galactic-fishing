@@ -1,6 +1,7 @@
 import { Trophy, Medal, Award } from "lucide-react"
-import { Skeleton } from "./ui/skeleton"
 import { Player } from "../lib/type"
+import { Skeleton } from "./ui/skeleton"
+
 
 interface LeaderboardProps {
   players: Player[]
@@ -17,14 +18,14 @@ export function Leaderboard({ players, loading }: LeaderboardProps) {
       <h2 className="text-2xl font-bold mb-6 text-center">Top Pescadores Galácticos</h2>
 
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full border-separate border-spacing-0">
           <thead>
             <tr className="border-b border-blue-500/30">
-              <th className="px-4 py-3 text-left">Rank</th>
+              <th className="px-4 py-3 text-left first:rounded-tl-md last:rounded-tr-md">Rank</th>
               <th className="px-4 py-3 text-left">Usuario</th>
               <th className="px-4 py-3 text-right">Nivel</th>
               <th className="px-4 py-3 text-right">XP</th>
-              <th className="px-4 py-3 text-right">Oro</th>
+              <th className="px-4 py-3 text-right last:rounded-tr-md">Oro</th>
             </tr>
           </thead>
           <tbody>
